@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Patient Management System</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Patient Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="nav justify-content-end">
+      <li class="nav-link ">
+      <a th:href="@{#}" class="btn btn-info btn-lg-3">
+       <span class="glyphicon glyphicon-log-out"></span>patient Records
+        </a>
+     
+   
+     <a th:href="@{/login}" class="btn btn-primary">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+    </li>
+    </ul>
+  </div>
+</nav>
+
+      <div class="table-responsive">
+      	<div class="row">
+      	<div class = "col-lg-3">
+         	<h1>List patient</h1>
+         	</div>
+      
+      </div>
+      <div class ="row">
+      	<div class = "col-lg-3">
+      		<a th:href = "@{/patients/new}" class = "btn btn-primary btn-sm mb-3" >Add patient</a>
+      	</div>
+      </div>
+      <table class ="table table-striped table-bordered table-dark table-hover">
+      	<thead class = "table-dark">
+      		<tr>
+      			<th>patient First Name</th>
+      			<th>patient Last Name</th>
+      			<th>patient Email</th>
+      			<th>patient Phone no</th>
+      			<th>patient Age</th>
+      			<th>patient Gender</th>
+      			<th>patient Room No</th>
+      			<th>patient IP / OP</th>
+      			<th>Actions</th>
+      		</tr>
+      	</thead>
+      		
+      	<tbody>
+      		<tr th:each="patient, custStat : ${patients}">
+      			<td th:text = "${patient.firstname}"></td>
+      			<td th:text = "${patient.lastname}"></td>
+      			<td th:text = "${patient.email}"></td>
+      			<td th:text = "${patient.phone}"></td>
+      			<td th:text = "${patient.age}"></td>
+      			<td th:text = "${patient.gender}"></td>
+      			<td th:text = "${patient.room_no}"></td>
+      			<td th:text = "${	patient.patient_type}"></td>
+      			
+      			
+      			
+      			<td >
+      				<a th:href = "@{/patients/edit/{id}(id=${patient.id})}"
+      				class="btn btn-success">update</a>
+      			
+      				<a th:href = "@{/patients/{id}(id=${patient.id})}"
+      				class="btn btn-danger">Delete</a>
+      			</td>
+      		</tr>
+      		
+      	</tbody>	
+      
+      </table>
+      </div>
+
+</body>
+</html>
